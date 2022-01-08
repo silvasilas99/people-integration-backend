@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\SocialAccount;
 
 class AuthController extends Controller
 {
@@ -55,7 +56,7 @@ class AuthController extends Controller
             });
     
             return Response::json([
-                'user' => new UserResource($user),
+                'user' => $user,
                 'google_user' => $googleUser,
             ]);
         } catch (\Throwable $err) {
