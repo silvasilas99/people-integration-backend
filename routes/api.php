@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('web')->get('/auth/getSessionToken', [AuthController::class, 'getSessionToken']);
+Route::middleware('web')->get('/auth/google', [AuthController::class, 'getAuthUrl']);
+Route::middleware('web')->get('/auth/google/callback', [AuthController::class, 'handleCallbackFromGoogle']);
